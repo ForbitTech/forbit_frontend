@@ -6,10 +6,12 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { Link, animateScroll as scroll } from "react-scroll";
-import './header.css'
-
+import "./header.css";
+import { useHistory } from "react-router";
 function ElevationScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -36,13 +38,30 @@ ElevationScroll.propTypes = {
 };
 
 const Nav = (props) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const history = useHistory();
+
+  const conman = () => {
+    history.push({
+      pathname: "/PrivacyPolicy/Construction_Manager",
+    });
+  };
   return (
-    <React.Fragment >
+    <React.Fragment>
       <CssBaseline />
       <ElevationScroll {...props}>
-        <AppBar className="header"
+        <AppBar
+          className="header"
           style={{
-           
             boxShadow: "initial",
           }}
         >
@@ -57,7 +76,7 @@ const Nav = (props) => {
             >
               <Button color="white">
                 <Link
-                  style={{ activeClass: "1px solid black" , color:"white" }}
+                  style={{ activeClass: "1px solid black", color: "white" }}
                   activeClass="active"
                   to="marginTop"
                   spy={true}
@@ -70,7 +89,7 @@ const Nav = (props) => {
               </Button>
               <Button color="Black">
                 <Link
-                  style={{ activeClass: "1px solid white" , color:"white"}}
+                  style={{ activeClass: "1px solid white", color: "white" }}
                   activeClass="active"
                   to="about"
                   spy={true}
@@ -85,7 +104,7 @@ const Nav = (props) => {
               <Button color="Black">
                 {" "}
                 <Link
-                   style={{ activeClass: "1px solid white" , color:"white"}}
+                  style={{ activeClass: "1px solid white", color: "white" }}
                   activeClass="active"
                   to="Service"
                   spy={true}
@@ -96,11 +115,11 @@ const Nav = (props) => {
                   Services
                 </Link>
               </Button>
-            
+
               <Button color="Black">
                 {" "}
                 <Link
-                   style={{ activeClass: "1px solid white" , color:"white"}}
+                  style={{ activeClass: "1px solid white", color: "white" }}
                   activeClass="active"
                   to="Project"
                   spy={true}
@@ -115,9 +134,9 @@ const Nav = (props) => {
               <Button color="Black">
                 {" "}
                 <Link
-                   style={{ activeClass: "1px solid white" , color:"white"}}
+                  style={{ activeClass: "1px solid white", color: "white" }}
                   activeClass="active"
-                  to="contact" 
+                  to="contact"
                   spy={true}
                   smooth={true}
                   offset={-70}
@@ -126,6 +145,27 @@ const Nav = (props) => {
                   Contact
                 </Link>
               </Button>
+              <Button
+                style={{ activeClass: "1px solid white", color: "white" }}
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                Privacy Policy
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={() => conman()}>
+                  Construction Manager
+                </MenuItem>
+                {/* <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+              </Menu>
             </Grid>
           </Toolbar>
         </AppBar>
