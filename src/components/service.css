@@ -1,0 +1,18 @@
+.Service {
+  transition: transform 0.2s;
+}
+.Service:hover {
+  -ms-transform: scale(1); /* IE 9 */
+  -webkit-transform: scale(1); /* Safari 3-8 */
+  transform: scale(1.5);
+  background-color: rgb(45, 184, 11);
+}
+.Card:hover {
+  overflow: hidden;
+  animation: up-down 2s ease-in-out;
+}
+@keyframes up-down {
+  100% {
+    transform: translateY(-5px);
+  }
+}

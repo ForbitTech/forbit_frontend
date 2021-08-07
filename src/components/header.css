@@ -1,0 +1,24 @@
+.header {
+  background: rgba(0, 0, 0, 0) -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#000000),
+      to(#00fa70)
+    ) repeat scroll 0 0;
+
+  justify-content: space-between;
+  padding: 100;
+}
+
+.Welcome {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@keyframes up-down {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
